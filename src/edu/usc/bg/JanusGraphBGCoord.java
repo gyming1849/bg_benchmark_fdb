@@ -454,7 +454,7 @@ public class JanusGraphBGCoord {
                 .addRegistry(JanusGraphIoRegistry.instance())
                 .create();
         Cluster cluster = Cluster.build()
-                .addContactPoint("128.110.96.75")
+                .addContactPoint("128.110.219.54")
                 .port(8182)
                 .minConnectionPoolSize(10)
                 .maxConnectionPoolSize(100)

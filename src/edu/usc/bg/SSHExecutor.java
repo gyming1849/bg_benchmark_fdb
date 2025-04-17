@@ -9,6 +9,8 @@ import java.nio.file.StandardOpenOption;
 
 public class SSHExecutor {
 
+    private static final String node3 = "amd143.utah.cloudlab.us";
+    private static final String node4 = "amd149.utah.cloudlab.us";
     /**
      * @param remoteHost
      * @param remoteUser
@@ -70,11 +72,11 @@ public class SSHExecutor {
         String targetLog = "/users/Ziqif/" + prefix + "_monitor.log";
         switch (machine) {
             case "node3":
-                runRemoteCmd("apt066.apt.emulab.net", remoteUser, identityFile,
+                runRemoteCmd(node3, remoteUser, identityFile,
                         "echo '" + message + "' >> " + targetLog);
                 break;
             case "node4":
-                runRemoteCmd("apt075.apt.emulab.net", remoteUser, identityFile,
+                runRemoteCmd(node4, remoteUser, identityFile,
                         "echo '" + message + "' >> " + targetLog);
                 break;
             case "node5":
@@ -97,12 +99,12 @@ public class SSHExecutor {
         String identityFile = "/users/Ziqif/.ssh/id_rsa";
         switch (machine) {
             case "node3":
-                runRemoteCmd("apt066.apt.emulab.net", remoteUser, identityFile,
+                runRemoteCmd(node3, remoteUser, identityFile,
                         "nohup /users/Ziqif/scripts/monitor_perf.sh " + prefix +
                                 " > /users/Ziqif/" + prefix + "_monitor.log 2>&1 &");
                 break;
             case "node4":
-                runRemoteCmd("apt075.apt.emulab.net", remoteUser, identityFile,
+                runRemoteCmd(node4, remoteUser, identityFile,
                         "nohup /users/Ziqif/scripts/monitor_perf.sh " + prefix +
                                 " > /users/Ziqif/" + prefix + "_monitor.log 2>&1 &");
                 break;
@@ -125,10 +127,10 @@ public class SSHExecutor {
         String identityFile = "/users/Ziqif/.ssh/id_rsa";
         switch (machine) {
             case "node3":
-                runRemoteCmd("apt066.apt.emulab.net", remoteUser, identityFile, "pkill -f monitor_perf.sh");
+                runRemoteCmd(node3, remoteUser, identityFile, "pkill -f monitor_perf.sh");
                 break;
             case "node4":
-                runRemoteCmd("apt075.apt.emulab.net", remoteUser, identityFile, "pkill -f monitor_perf.sh");
+                runRemoteCmd(node4, remoteUser, identityFile, "pkill -f monitor_perf.sh");
                 break;
             case "node5":
                 stopLocalMonitor();
@@ -154,10 +156,10 @@ public class SSHExecutor {
         String remoteUser = "Ziqif";
         String identityFile = "/users/Ziqif/.ssh/id_rsa";
         try {
-            runRemoteCmd("apt066.apt.emulab.net", remoteUser, identityFile,
+            runRemoteCmd("amd143.utah.cloudlab.us", remoteUser, identityFile,
                     "echo \"=== START TEST iteration=1 ===\" >> /users/Ziqif/monitor.log");
 
-            runRemoteCmd("apt075.apt.emulab.net", remoteUser, identityFile,
+            runRemoteCmd("amd149.utah.cloudlab.us", remoteUser, identityFile,
                     "echo \"Just a test line\" >> /users/Ziqif/test.log");
 
             System.out.println("Commands executed successfully.");
